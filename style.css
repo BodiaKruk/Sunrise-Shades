@@ -1,0 +1,454 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+   overflow-x: hidden; /* Заборона горизонтального скролінгу */
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "Poppins", sans-serif;
+}
+
+body {
+   overflow-x: hidden; /* Забороняє горизонтальний скролінг */
+   width: 100%; /* Гарантує, що сторінка не ширша за вікно браузера */
+   height: 100%; /* Висота сторінки дорівнює висоті вікна браузера */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 100vh;
+   background: url('sfs.jpg') no-repeat;
+   background-size: cover;
+   background-position: center;
+   margin: 0; /* Знімає стандартні відступи браузера */
+}
+
+.wrapper {
+   margin: 0 auto; /* Центрує wrapper горизонтально */
+   position: relative; /* Для кращого позиціювання */
+   width: 100%;
+   max-width: 450px; /* Максимальна ширина для великих екранів */
+   background: transparent;
+   border: 2px solid rgba(255, 255, 255, .2);
+   backdrop-filter: blur(45px);
+   box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+   color: white;
+   border-radius: 10px;
+   padding: 20px;
+}
+
+
+.wrapper h6 {
+   margin-bottom: 15px;
+   font-size: 1.6rem;
+   text-align: center;
+   color: #333;
+}
+
+.wrapper .btn {
+   margin-top: 5%;
+   margin-bottom: 15px;
+   width: 100%;
+   height: 45px;
+   background: #fff;
+   border: none;
+   outline: none;
+   border-radius: 40px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+   cursor: pointer;
+   font-size: 16px;
+   color: #333;
+   font-weight: 600;
+   transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.buttons .btn {
+   flex: 1; /* Кожна кнопка займатиме однаковий простір */
+   height: 45px; /* Залишаємо початкову висоту */
+   background: #fff;
+   border: none;
+   outline: none;
+   border-radius: 40px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+   cursor: pointer;
+   font-size: 16px;
+   color: #333;
+   font-weight: 600;
+   transition: background-color 0.5s ease, color 0.5s ease;
+   text-align: center; /* Центруємо текст всередині кнопки */
+}
+
+.wrapper .btn:hover {
+   background: #626060;
+   color: #fff;
+}
+
+.buttons {
+   display: flex;
+   gap: 10px;
+}
+
+.slider {
+   margin-top: 5%;
+   width: 100%;
+   display: flex;
+   justify-content: space-between; /* Рівномірний розподіл повзунків */
+   align-items: center; /* Центрує по вертикалі */
+   position: relative;
+   padding: 10px 0; /* Менші відступи зверху та знизу */
+}
+
+
+output#volume-left,
+output#volume-right {
+   display: none; /* забрав показ над слайдерами */
+   font-size: 16px;
+   padding: 5px 10px;
+   background: #535252;
+   color: #fff;
+   border-radius: 10px;
+   position: absolute;
+   top: -30px; /* Розташування над повзунками */
+   transform: translateX(-50%); /* Центрує по горизонталі */
+}
+
+#fader-left,
+#fader-right {
+   width: 40%; /* Кожен повзунок займає приблизно половину простору */
+   margin: 0; /* Забираємо всі зовнішні відступи */
+}
+
+
+img {
+   display: block; /* Зробити зображення блоковим елементом */
+   margin: 0 auto; /* Центрує зображення по горизонталі */
+   padding: 20px;
+   width: 90%;
+   height: auto;
+   max-width: 100%;
+}
+
+.wrapper h1 {
+   margin-left: 8%;
+   margin-bottom: 15px;
+   font-size: 20px;
+   color: #333;
+}
+
+.wrapper .input-box {
+   width: 100%;
+   margin: 10px 0;
+   position: relative;
+   display: flex;
+   gap: 10px;
+}
+
+.settings-btn {
+   position: absolute;
+   top: 10%;
+   right: 10%;
+   background: #fff;
+   border: none;
+   outline: none;
+   border-radius: 40px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+   cursor: pointer;
+   font-size: 23px;
+   color: #333;
+   font-weight: 600;
+   transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.settings-menu {
+   position: fixed;
+   top: 0;
+   right: -250px; /* Початкове положення за межами екрана */
+   width: 250px;
+   height: 100%;
+   background: #cfc1a4;
+   box-shadow: -2px 0 5px rgba(0, 0, 0, .5);
+   padding: 20px;
+   z-index: 1000;
+   opacity: 0; /* Початкова прозорість */
+   transition: transform 0.5s ease, opacity 0.5s ease; /* Плавний перехід */
+}
+
+.settings-menu.show {
+   transform: translateX(-250px); /* Зрушуємо меню на видиму позицію */
+   opacity: 1; /* Робимо меню видимим */
+}
+
+
+.settings-menu h2 {
+   text-align: center;
+   color: #333;
+   margin-bottom: 20px;
+   font-size: 30px;
+}
+
+.settings-menu h3,
+.settings-menu h4,
+.settings-menu h5 {
+   text-align: center;
+   color: #333;
+   margin-bottom: 20px;
+}
+
+
+.settings-menu label {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 15px;
+   color: #535252;
+}
+
+.settings-menu button {
+   margin-top: 10%;
+   width: 100%;
+   height: 45px;
+   background: #fff;
+   border: none;
+   outline: none;
+   border-radius: 40px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+   cursor: pointer;
+   font-size: 16px;
+   color: #333;
+   font-weight: 600;
+   transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.settings-menu button:hover,
+.settings-btn:hover {
+   background-color: #535252;
+   color: #fff;
+}
+
+.logout {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 10px;
+   margin-bottom: 20px;
+}
+
+.logout i {
+   margin-right: 10px;
+}
+
+.logout a {
+   text-align: center;
+   color: #ffffff;
+   text-decoration: none;
+   transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.settings-menu a:hover {
+   color: #4a4949;
+   text-decoration: underline;
+}
+
+.wrapper .closing {
+   color: #080808;
+   display: flex;
+   justify-content: space-between;
+   font-size: 14.5px;
+   margin: -10px 0 15px;
+}
+
+.closing label input {
+   color: #080808;
+   margin-right: 3px;
+   margin-bottom: 17px;
+   accent-color: #fff;
+}
+
+/* Media Queries для адаптивності */
+@media (max-width: 768px) {
+   .wrapper {
+      width: 90%;
+      padding: 20px;
+   }
+
+   .settings-btn {
+      top: 15%;
+      right: 15%;
+      font-size: 20px;
+   }
+
+   .slider {
+      gap: 30px;
+   }
+}
+
+@media (max-width: 480px) {
+   .wrapper h6 {
+      font-size: 1.2rem;
+   }
+
+   .wrapper .btn {
+      font-size: 14px;
+      height: 40px;
+   }
+
+   .settings-btn {
+      top: 10%;
+      right: 5%;
+      font-size: 18px;
+   }
+
+   .settings-menu {
+      width: 200px;
+      padding: 15px;
+   }
+
+   .slider {
+      gap: 20px;
+   }
+
+   output#volume-left,
+   output#volume-right {
+      
+      font-size: 14px;
+   }
+}
+
+
+.reverse-slider {
+   direction: rtl;
+}
+
+
+.wrapper .closing{
+   display: flex;
+   justify-content: space-between;
+   font-size: 14.5px;
+   margin: -10px 0 15px;
+   line-height: 16px; /* Підлаштуйте це значення за необхідності */
+
+}
+
+.closing label input {
+   accent-color: #fff;
+   margin-right: 8px;
+   margin-bottom: 5px; 
+   vertical-align: middle; /* Вирівнювання по центру */
+}
+
+.closing label:hover {
+   color: #626060; /* Колір тексту при наведенні */
+   transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Кастомний стиль для чекбоксу */
+.custom-checkbox {
+   appearance: none; /* Вимикає стандартний вигляд чекбоксу */
+   width: 16px;
+   height: 16px;
+   background-color: transparent;
+   border: 2px solid #fff;
+   border-radius: 4px;
+   cursor: pointer;
+   transition: background-color 0.3s ease, border-color 0.3s ease;
+   display: inline-block;
+   outline: none;
+}
+
+/* Стиль для активного чекбоксу (коли він обраний) */
+.custom-checkbox:checked {
+   background-color: #626060; /* Кольори для обраного стану */
+   border-color: #fff;
+}
+
+/* Внутрішня позначка "галочка" для обраного стану */
+.custom-checkbox:checked::after {
+   color: #ffffff;
+   font-size: 12px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100%;
+}
+
+
+.time-settings {
+   display: block; /* Змініть з flex на block, щоб елементи йшли вертикально */
+   margin-top: 10px;
+}
+
+.time-settings label {
+   color: #535252;
+   font-size: 14px;
+   display: block; /* Додайте цей стиль, щоб лейбли були в рядку з полем */
+   margin-bottom: 5px; /* Відступ між лейблом і полем */
+}
+
+.time-settings input[type="time"] {
+   padding: 5px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   background-color: #bba780;
+   color: #333;
+   width: 100%; /* Встановлює ширину для кращого вигляду */
+}
+
+
+.curtains-container {
+   position: relative;
+   width: 90%;
+   max-width: 400px;
+   margin: 0 auto;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.curtains-container img {
+   width: 100%;
+   height: auto;
+   z-index: 1;
+}
+
+.curtain {
+   position: absolute;
+   top: 0;
+   height: 100%;
+   background-color: #b19271; /* Колір штор */
+   z-index: 2;
+   transition: height 1s ease, opacity 1s ease; /* Гладке закриття та відкриття */
+}
+
+.curtain-left, .curtain-right {
+   position: absolute;
+   top: 0;
+   height: 100%;
+   width: 50%; /* Початковий стан */
+   background: linear-gradient(to bottom, #A08162, #997B5D, #54412D);
+   border-radius: 0; /* Без округлення */
+   box-shadow: inset 0px 10px 15px rgba(0, 0, 0, 0.2); /* Тіні для об'єму */
+   clip-path: polygon(0% 0%, 100% 0%, 97% 100%, 3% 100%); /* Ефект хвиль */
+   transition: all 0.5s ease-in-out; /* Плавна анімація */
+}
+
+.curtain-left {
+   border-radius: 5px;
+   left: 0;
+   background: repeating-linear-gradient(
+       90deg,
+       #A08162 0px,
+       #997B5D 30px,
+       #54412D 40px
+   ); /* Горизонтальна текстура смужок */
+}
+
+.curtain-right {
+   border-radius: 5px;
+   right: 0;
+   background: repeating-linear-gradient(
+       90deg,
+       #A08162 0px,
+       #997B5D 30px,
+       #54412D 40px
+   );
+}
+

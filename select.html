@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunRise Shades: Add and Select</title>
+    <link rel="stylesheet" href="styleselect.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="wrapper">
+        <form onsubmit="event.preventDefault();">
+            <h1>Add and Select</h1>
+
+            <input type="text" id="deviceInput" placeholder="Enter device ID" required>
+            <button type="button" class="btn" onclick="addDevice()">Add Device</button>
+
+            <select id="deviceSelect" onchange="toggleSelectButton()" required>
+                <option value="" disabled selected>Select a device</option>
+            </select>
+
+            <button type="submit" class="btn" id="selectDeviceBtn" onclick="window.location.href='index.html'" disabled>Confirm</button>
+
+            <div class="logout">
+                <i class='bx bx-log-out'></i>
+                <a href="login.html">Log out</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function addDevice() {
+            const deviceInput = document.getElementById("deviceInput");
+            const deviceSelect = document.getElementById("deviceSelect");
+
+            if (deviceInput.value.trim() !== "") {
+                const newOption = document.createElement("option");
+                newOption.value = deviceInput.value;
+                newOption.textContent = deviceInput.value;
+                deviceSelect.appendChild(newOption);
+
+                deviceInput.value = "";
+            }
+        }
+
+        function toggleSelectButton() {
+            const deviceSelect = document.getElementById("deviceSelect");
+            const selectDeviceBtn = document.getElementById("selectDeviceBtn");
+            selectDeviceBtn.disabled = deviceSelect.value === "";
+        }
+    </script>
+</body>
+</html>
